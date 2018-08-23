@@ -1,5 +1,6 @@
 backend:
   name: git-gateway
+  repo: https://github.com/amp0024/bael-template.git
   accept_roles: #optional - accepts all users if left out
     - admin
     - editor

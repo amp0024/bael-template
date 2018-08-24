@@ -84,4 +84,4 @@ collections:
         name: 'childrenservices'
         widget: 'list'
         fields:
-          - {label: widget: "relation", collection: "services", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: false}
+          - {label: "Child Service Name", name: "childservicename", widget: "relation", collection: "services", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: false}

@@ -89,7 +89,7 @@ const createStore = () =>
       async getServices({ state, commit }) {
 
 
-        const context = await require.context('~/content/services/', false, /\.json$/);
+        const context = await require.context('~/content/services/posts/', false, /\.json$/);
 
         const pages = await context.keys().map(key => ({
           ...context(key),

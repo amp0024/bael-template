@@ -8,6 +8,7 @@ const createStore = () =>
       menuIsActive: false,
       menuInitial: true,
       blogPosts: [],
+      servPosts: [],
       allPages: [],
       navheight: 60,
       blogTitle: '',
@@ -23,7 +24,7 @@ const createStore = () =>
       theCategory: '',
       theCrumb: '',
       allCats: [],
-      allServices: [],
+      // allServices: [],
       results: [],
       resultsnum: [],
       pagination: false,
@@ -34,6 +35,7 @@ const createStore = () =>
       async nuxtServerInit({ dispatch }) {
         await dispatch('getSiteInfo')
         await dispatch('getBlogPosts')
+        await dispatch('getServicesPosts')
         await dispatch('getPages')
         await dispatch('getCats')
         await dispatch('getServs')
@@ -49,6 +51,19 @@ const createStore = () =>
 
 
         commit('SET_POSTS', searchposts.reverse())
+
+      },
+      async getServicesPosts({ state, commit }) {
+        const context = await require.context('~/content/services/posts/', false, /\.json$/);
+
+        const searchservices = await context.keys().map(key => ({
+          ...context(key),
+          _path: `/service/${key.replace('.json', '').replace('./', '')}`
+        }));
+
+
+
+        commit('SET_SERVICES', searchservices.reverse())
 
       },
       async getPages({ state, commit }) {
@@ -128,10 +143,15 @@ const createStore = () =>
           ...context(key),
           _path: `/blog/${key.replace('.json', '').replace('./', '')}`
         }));
-
+        // const searchservices = context2.keys().map(key => ({
+        //   ...context(key),
+        //   _path: `/services/${key.replace('.json', '').replace('./', '')}`
+        // }));
+        // console.log(searchservices)
 
 
         commit('SET_POSTS', searchposts)
+        // commit('SET_SERVICES', searchservices)
         commit('SET_INFO', info)
         commit('SET_CONNECT', connect)
 
@@ -141,6 +161,9 @@ const createStore = () =>
       SET_POSTS(state, data) {
         state.blogPosts = data
       },
+      // SET_SERVICE(state, data) {
+      //   state.servPosts = data
+      // },
       SET_PAGES(state, data) {
         state.allPages = data
       },
@@ -148,6 +171,7 @@ const createStore = () =>
         state.allCats = data
       },
       SET_SERVICES(state, data) {
+        console.log(data)
         state.allServices = data
       },
       SET_CRUMB(state, data) {

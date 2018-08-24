@@ -80,9 +80,9 @@ collections:
     fields:
       - {label: Title, name: title, widget: string}
       - {label: Description, name: description, widget: string, required: false}
-      - label: Child Service
-          name: children
-          widget: list
+      - label: 'Child Service'
+          name: 'childrenservices'
+          widget: 'list'
           fields:
             - {label: widget: "relation", collection: "services", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: false}
  

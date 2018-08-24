@@ -73,11 +73,16 @@ collections:
       - {label: Description, name: description, widget: string, required: false}
   - label: 'Services'
     name: 'services'
-    folder: "content/services" # The path to the folder where the documents are stored
+    folder: "content/services/posts" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     format: 'json'
     fields:
       - {label: Title, name: title, widget: string}
       - {label: Description, name: description, widget: string, required: false}
+      - label: Child Service
+          name: children
+          widget: list
+          fields:
+            - {label: widget: "relation", collection: "services", searchFields: ["title"], valueField: "title", displayFields: ["title"], required: false}
  

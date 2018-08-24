@@ -15,13 +15,14 @@ const createStore = () =>
       connect: [],
       allTags: [],
       gridItems: [],
-      gridNumPosts: '11',
+      gridNumPosts: '6',
       gridNumCats: '11',
       gridOffset: '0',
       theThumbnail: '',
       theCategory: '',
       theCrumb: '',
       allCats: [],
+      allServices: [],
       results: [],
       resultsnum: [],
       pagination: false,
@@ -62,8 +63,8 @@ const createStore = () =>
 
       },
       setGridNumPosts({ state, commit }) {
-        if (state.blogPosts > 13) {
-          this.$store.commit("SET_GRIDNUMPOSTS", 12);
+        if (state.blogPosts > 7) {
+          this.$store.commit("SET_GRIDNUMPOSTS", 6);
         }
       },
       setGridNumCats({ state, commit }) {
@@ -83,6 +84,19 @@ const createStore = () =>
         }));
 
         commit('SET_CATS', pages)
+
+      },
+      async getServices({ state, commit }) {
+
+
+        const context = await require.context('~/content/services/', false, /\.json$/);
+
+        const pages = await context.keys().map(key => ({
+          ...context(key),
+          _path: `/service/${key.replace('.json', '').replace('./', '')}`
+        }));
+
+        commit('SET_SERVICES', pages)
 
       },
       async getTags({ state, commit }) {
@@ -125,6 +139,9 @@ const createStore = () =>
       },
       SET_CATS(state, data) {
         state.allCats = data
+      },
+      SET_SERVICES(state, data) {
+        state.allServices = data
       },
       SET_CRUMB(state, data) {
         state.theCrumb = data

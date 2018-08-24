@@ -101,7 +101,7 @@ export default {
     },
     totalpages() {
       var res = this.$store.state.resultsnum;
-      var total = Math.ceil(res / 12);
+      var total = Math.ceil(res / 6);
       return total;
     },
     nextpage() {

@@ -17,6 +17,7 @@ const createStore = () =>
       gridItems: [],
       gridNumPosts: '6',
       gridNumCats: '11',
+      gridNumServ: '11',
       gridOffset: '0',
       theThumbnail: '',
       theCategory: '',
@@ -35,6 +36,7 @@ const createStore = () =>
         await dispatch('getBlogPosts')
         await dispatch('getPages')
         await dispatch('getCats')
+        await dispatch('getServs')
       },
       async getBlogPosts({ state, commit }) {
         const context = await require.context('~/content/blog/posts/', false, /\.json$/);
@@ -72,6 +74,11 @@ const createStore = () =>
           this.$store.commit("SET_GRIDNUMCATS", 12);
         }
       },
+      setGridNumServ({ state, commit }) {
+        if (state.allServices > 13) {
+          this.$store.commit("SET_GRIDNUMSERV", 12);
+        }
+      },
 
       async getCats({ state, commit }) {
 
@@ -86,7 +93,7 @@ const createStore = () =>
         commit('SET_CATS', pages)
 
       },
-      async getServices({ state, commit }) {
+      async getServs({ state, commit }) {
 
 
         const context = await require.context('~/content/services/posts/', false, /\.json$/);
@@ -154,6 +161,9 @@ const createStore = () =>
       },
       SET_GRIDNUMCATS(state, data) {
         state.gridNumCats = data
+      },
+      SET_GRIDNUMSERV(state, data) {
+        state.gridNumServ = data
       },
       SET_GRIDOFFSET(state, data) {
         state.gridOffset = data

@@ -28,7 +28,7 @@ export default {
   },
   computed: {
    allServices() {
-    return this.$store.state.allCats
+    return this.$store.state.allServices
    }
    
   }

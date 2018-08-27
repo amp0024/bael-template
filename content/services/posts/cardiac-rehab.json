@@ -1,0 +1,9 @@
+{
+  "title": "Cardiac Rehab",
+  "description": "If you are diagnosed with a chronic heart condition, experience a heart attack or undergo heart surgery you may require cardiac rehabilitation.",
+  "parentservice": [
+    {
+      "parentservicename": "Heart Care"
+    }
+  ]
+}

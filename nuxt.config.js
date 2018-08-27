@@ -112,54 +112,54 @@ function getDynamicPaths(urlFilepathTable) {
 return[].concat(
   ...Object.keys(urlFilepathTable).map(url => {
     var filepathGlob = urlFilepathTable[url];
-    glob(urlFilepathTable[url], { cwd: 'content' }, function(err, files) { // read the folder or folders if you want: example json/**/*.json
-          if(err) {
-            console.log("cannot read the folder, something goes wrong with glob", err);
-          }
-          // console.log(files);
-          // var matters = [];
-          var fileReadOptions = {
-              'encoding':'utf-8'
-          };
-          files.forEach(function(file) {
-            filePath = '/Users/apoulsen/sites/bael-template/content/' + file;
-            // console.log('file',file)
-            // var content=fs.readFileSync(file, "utf-8");
-            // console.log(content);
-            fs.readFile(filePath, 'utf-8', handleJsonFile);
+    // glob(urlFilepathTable[url], { cwd: 'content' }, function(err, files) { // read the folder or folders if you want: example json/**/*.json
+    //       if(err) {
+    //         console.log("cannot read the folder, something goes wrong with glob", err);
+    //       }
+    //       // console.log(files);
+    //       // var matters = [];
+    //       var fileReadOptions = {
+    //           'encoding':'utf-8'
+    //       };
+    //       files.forEach(function(file) {
+    //         filePath = '/Users/apoulsen/sites/bael-template/content/' + file;
+    //         // console.log('file',file)
+    //         // var content=fs.readFileSync(file, "utf-8");
+    //         // console.log(content);
+    //         fs.readFile(filePath, 'utf-8', handleJsonFile);
 
-            // fs.readFile(file, 'utf-8', function (err, data) { // Read each file
-            //   console.log('err', err)
-              // if(err) {
-              //   console.log("cannot read the file, something goes wrong with the file", err);
-              // }
-              // console.log(data)
-              // var obj = JSON.parse(data);
-            // });
-          });
-          function handleJsonFile (err, data) {
-              if (err) throw err;
-              var dataObject = JSON.parse(data);
+    //         // fs.readFile(file, 'utf-8', function (err, data) { // Read each file
+    //         //   console.log('err', err)
+    //           // if(err) {
+    //           //   console.log("cannot read the file, something goes wrong with the file", err);
+    //           // }
+    //           // console.log(data)
+    //           // var obj = JSON.parse(data);
+    //         // });
+    //       });
+    //       function handleJsonFile (err, data) {
+    //           if (err) throw err;
+    //           var dataObject = JSON.parse(data);
               
-              var i;
-              var childrenservices;
-              if (dataObject.childrenservices){
-                console.log('has child service',dataObject)
+    //           var i;
+    //           var childrenservices;
+    //           if (dataObject.childrenservices){
+    //             console.log('has child service',dataObject)
 
-              } else {
-                console.log('no child service', dataObject)
-              }
-              // Loop through all possible action.
-              // for (i = 0; i < dataObject.childrenservices.length; ++i) {
-              //     childrenservices = dataObject.childrenservices[i];
-              //     console.log(childrenservices)
-              // }
-              // if (delCounter > 1) {
-              //     throw new Exception('Jsons  not valid.');
-              // }
-          }
-          // .map(filepath => `${url}/${path.basename(filepath, '.json')}`);
-        });
+    //           } else {
+    //             console.log('no child service', dataObject)
+    //           }
+    //           // Loop through all possible action.
+    //           // for (i = 0; i < dataObject.childrenservices.length; ++i) {
+    //           //     childrenservices = dataObject.childrenservices[i];
+    //           //     console.log(childrenservices)
+    //           // }
+    //           // if (delCounter > 1) {
+    //           //     throw new Exception('Jsons  not valid.');
+    //           // }
+    //       }
+    //       // .map(filepath => `${url}/${path.basename(filepath, '.json')}`);
+    //     });
     return glob
         .sync(filepathGlob, { cwd: 'content' })
         .map(filepath => `${url}/${path.basename(filepath, '.json')}`);

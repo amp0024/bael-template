@@ -143,11 +143,11 @@ return[].concat(
               
     //           var i;
     //           var childrenservices;
-    //           if (dataObject.childrenservices){
-    //             console.log('has child service',dataObject)
+    //           if (dataObject.parentservice){
+    //             console.log('has parent service',dataObject)
 
     //           } else {
-    //             console.log('no child service', dataObject)
+    //             console.log('no parent service', dataObject)
     //           }
     //           // Loop through all possible action.
     //           // for (i = 0; i < dataObject.childrenservices.length; ++i) {
